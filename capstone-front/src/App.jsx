@@ -1,11 +1,33 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import { Context } from 'react'
+import Header from './components/Header'
+import Main from './components/Main'
+import Footer from './components/Footer'
+import Context from './Context'
+
 
 function App() {
-  const [userInfo, setUserInfo] = useState
+  const [userInfo, setUserInfo] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    username: '',
+    birthDate: '',
+    sex: '',
+    illnessId: '',
+    googleId: ''
+  })
+
+  return (
+    <div>
+      <Context.Provider value={{ userInfo, setUserInfo }}>
+        <Header />
+        <Main />
+        <Footer />
+      </Context.Provider>
+    </div>
+  )
 }
 
 export default App
