@@ -2,11 +2,9 @@ import { Routes, Route } from 'react-router-dom'
 import { useState, useContext } from 'react'
 import Login from './Login'
 import CreateAccount from './CreateAccount'
-import CreateSymptom from './CreateSymptom'
-import Survey from './DailySurvey'
-import Calendar from './Calendar'
-import Profile from './Profile'
-import Day from './Day'
+// import Calendar from './Calendar'
+// import Profile from './Profile'
+// import Day from './Day'
 import Context from '../Context'
 
 export default function Main () {
@@ -20,8 +18,8 @@ export default function Main () {
       <>
         <Routes>
           <Route path='' element={<Login />}/>
-          <Route path='/CreactAccount' element={<CreateAccount />}/>
-          <Route path='/Profile' element={<Profile />}/>
+          <Route path='/CreateAccount' element={<CreateAccount />}/>
+          {/* <Route path='/Profile' element={<Profile />}/> */}
         </Routes>
       </>
     )
@@ -29,9 +27,9 @@ export default function Main () {
     return (
       <>
         <Routes>
-          <Route path='/' element={<Calendar />}/>
+          {/* <Route path='/' element={<Calendar />}/>
           <Route path='/Profile/:id' element={<Profile />}/>
-          <Route path='/Day/:id' element={<Day />}/>
+          <Route path='/Day/:id' element={<Day />}/> */}
         </Routes>
       </>
     )
