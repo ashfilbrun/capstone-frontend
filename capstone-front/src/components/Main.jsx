@@ -17,9 +17,8 @@ export default function Main () {
     return (
       <>
         <Routes>
-          <Route path='' element={<Login />}/>
+          <Route path='' element={<Login />} />
           <Route path='/CreateAccount' element={<CreateAccount />}/>
-          {/* <Route path='/Profile' element={<Profile />}/> */}
         </Routes>
       </>
     )
@@ -28,8 +27,8 @@ export default function Main () {
       <>
         <Routes>
           <Route path='/' element={<MyCalendar />}/>
-          {/* <Route path='/Profile/:id' element={<Profile />}/>
-          <Route path='/Day/:id' element={<Day />}/> */}
+          <Route path='/Profile/:id' element={<Profile />}/>
+          <Route path='/DailySurvey/:id' element={<DailySurvey />}/>
         </Routes>
       </>
     )

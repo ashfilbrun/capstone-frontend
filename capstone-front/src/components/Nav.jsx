@@ -10,9 +10,9 @@ export default function Nav () {
   return (
     <div className="navBar">
       <ul>
-        <li><Link to="/DailySurvey">Daily Symptoms</Link></li>
         <li><Link to="/MyCalendar">Calendar</Link></li>
-        <li><Link to="/Profile">Profile</Link></li>
+        <li><Link to="/DailySurvey">Daily Symptoms</Link></li>
+        <li><Link to={"/Profile"+{userId}}>Profile</Link></li>
       </ul>
     </div>
   )
