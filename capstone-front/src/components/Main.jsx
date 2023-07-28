@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { useState, useContext } from 'react'
 import Login from './Login'
 import CreateAccount from './CreateAccount'
-// import Calendar from './Calendar'
+import MyCalendar from './MyCalendar'
 // import Profile from './Profile'
 // import Day from './Day'
 import Context from '../Context'
@@ -27,8 +27,8 @@ export default function Main () {
     return (
       <>
         <Routes>
-          {/* <Route path='/' element={<Calendar />}/>
-          <Route path='/Profile/:id' element={<Profile />}/>
+          <Route path='/' element={<MyCalendar />}/>
+          {/* <Route path='/Profile/:id' element={<Profile />}/>
           <Route path='/Day/:id' element={<Day />}/> */}
         </Routes>
       </>
