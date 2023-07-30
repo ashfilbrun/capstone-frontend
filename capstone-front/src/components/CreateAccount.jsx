@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export default function CreateAccount () {
 
-  const BASE_URL = "localhost:3001"
+  const BASE_URL = "http://localhost:3001/api/"
 
   const initialState = {
       firstName: '',

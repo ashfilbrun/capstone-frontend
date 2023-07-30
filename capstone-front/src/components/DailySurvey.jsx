@@ -5,7 +5,7 @@ import Context from '../Context'
 import Select from 'react-select'
 
 export default function DailySurvey ({open, onClose, meTeamId}) {
-  const BASE_URL = 'localhost:3001/'
+  const BASE_URL = 'http://localhost:3001/api/'
 
   const [date, setDate] = useState('')
   const [formState, setFormState] = useState(initialState)
