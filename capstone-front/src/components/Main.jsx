@@ -3,7 +3,7 @@ import { useState, useContext } from 'react'
 import Login from './Login'
 import CreateAccount from './CreateAccount'
 import MyCalendar from './MyCalendar'
-// import Profile from './Profile'
+import Profile from './Profile'
 // import Day from './Day'
 import Context from '../Context'
 

@@ -4,7 +4,7 @@ import axios from 'axios'
 import Context from "../Context"
 
 export default function Login () {
-  const BASE_URL = 'localhost:3001'
+  const BASE_URL = 'http://localhost:3001/api/'
 
   const initialState = {
     username: '',
@@ -21,6 +21,7 @@ export default function Login () {
     e.preventDefault()
     const user = async () => {
       const myUser = await axios.get(`${BASE_URL}user/username/${formState.username}`)
+      console.log(myUser.data)
 
       if (myUser.data.length === 0) {
           setIsActive(true)
@@ -29,7 +30,7 @@ export default function Login () {
       if (myUser.data[0].password === formState.password) {
           setUserInfo({...userInfo, firstName: myUser.data[0].firstName, lastName: myUser.data[0].lastName, userId: myUser.data[0]._id, username: myUser.data[0].username})
           setIsActive(false)
-          navigate("/")
+          navigate("/login")
       } else {
           setIsActive(true)
       }
@@ -43,7 +44,7 @@ export default function Login () {
   }
 
   const logIn = async () => {
-    await axios.get(`http://localhost:3001/api/auth/google`)
+    await axios.get(`http://localhost:3001/api/`)
   }
 
   const create = () => {
