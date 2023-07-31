@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
+import Context from '../Context'
 
 export default function CreateAccount () {
   
@@ -14,12 +15,13 @@ export default function CreateAccount () {
     email: '',
     password: '',
     sex: '',
-    passwordValid: ''
+    passwordValid: '',
+    illness: '',
   }
   
   const [formState, setFormState] = useState(initialState)
   const [ illness, setIllness ] = useState('')
-  const [ illnesses, setIllnesses ] = useState('')
+  const { illnesses, setIllnesses } = useContext(Context)
   
   let navigate = useNavigate()
 
@@ -33,11 +35,10 @@ export default function CreateAccount () {
       password: formState.password,
       sex: formState.sex,
       birthDate: null,
-      illnessId: formState.illness,
+      illnessId: null,
       googleId: null,
     }
     await axios.post(`${BASE_URL}user/create`, newUser)
-    setFormState(initialState)
     navigate("/")
   }
 
@@ -45,7 +46,7 @@ export default function CreateAccount () {
     const getIllnesses = async () => {
       try {
         const response = await axios.get(`http://localhost:3001/api/illness/`)
-        setIllnesses(response.data)
+        getIllnesses(response.data)
       } catch (error) {
         console.log(error)
       }
@@ -59,7 +60,8 @@ export default function CreateAccount () {
   }
 
   const handleChangeIllness = event => {
-    setIllness(event.target.value)
+    setIllness({...illness, [e.target.id]: e.target.value})
+    setIllnesses({...illnesses, [e.target.id]: e.target.value})
   }
 
   const cancel = () => {
@@ -99,9 +101,12 @@ export default function CreateAccount () {
             <option value='male'>Male</option>
             <option value='no'>Prefer not to answer</option>
           </select>
-          <label htmlFor="illnessId">CHRONIC ILLNESS:</label>
-          <select placeholder='select' name="illnessId" id='illnessId' onChange={handleChangeIllness}>
-            {illnesses.map(illness => (
+          <label htmlFor="illness">CHRONIC ILLNESS:</label>
+          <select 
+            placeholder='select' 
+            name="illness" 
+            onChange={handleChangeIllness}>
+            {illnesses?.map(illness => (
               <option key={illness.id} defaultValue={illness.id}>
                 {illness.name}
               </option>

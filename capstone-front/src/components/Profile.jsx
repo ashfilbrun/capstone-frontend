@@ -12,6 +12,7 @@ export default function Profile () {
   const [ username, setUsername ] = useState('')
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
+  const [ passwordValid, setPasswordValid ] = useState('')
   const [ illness, setIllness ] = useState('')
   const [ illnesses, setIllnesses ] = useState('')
 
@@ -40,6 +41,7 @@ export default function Profile () {
         username,
         email,
         password,
+        passwordValid,
         illness,
       }
     }
@@ -84,7 +86,7 @@ export default function Profile () {
     setUsername({...username, [e.target.name]: e.target.value})
     setEmail({...email, [e.target.name]: e.target.value})
     setPassword({...password, [e.target.name]: e.target.value})
-    setIllness({...illness, [e.target.name]: e.target.value})
+    setPasswordValid({...passwordValid, [e.target.name]: e.target.value})
   }
 
   return user && illnesses ? (
@@ -128,6 +130,12 @@ export default function Profile () {
                 name="password" 
                 onChange={handleChange} 
                 defaultValue={user.password}/>
+              <label htmlFor="passwordValid">CONFIRM NEW PASSWORD:</label>
+              <input 
+                type="password" 
+                id="passwordValid" 
+                onChange={handleChange} 
+                defaultValue={user.passwordValid}/>
               <label htmlFor="illness">UPDATE ILLNESS:</label>
               <select 
                 placeholder={user.illness} 
@@ -139,8 +147,6 @@ export default function Profile () {
                   </option>
                 ))}
               </select>
-              {/* <label htmlFor="passwordValid">CONFIRM NEW PASSWORD:</label>
-              <input type="password" id="passwordValid" onChange={(e) => setPasswordValid(e.target.value)} value={user.passwordValid}></input> */}
               <button className="submit" id="updateBtn" type="submit">Update Profile</button>
             </form>
       </div>
