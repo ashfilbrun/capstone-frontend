@@ -8144,7 +8144,7 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #fc7fb2; }
+  color: #7e0cf5; }
   a:hover, a:focus {
     text-decoration: none !important;
     outline: none !important;
@@ -8159,7 +8159,7 @@ h1, h2, h3, h4, h5,
   color: #000; }
 
 .bg-primary {
-  background: #fc7fb2 !important; }
+  background: #7e0cf5 !important; }
 
 .ftco-section {
   padding: 7em 0; }
@@ -8182,19 +8182,19 @@ h1, h2, h3, h4, h5,
 .content {
   overflow: none;
   width: 100%;
-  max-width: 500px;
+  max-width: 790px;
   padding: 0px 0;
   height: 500px;
   position: relative;
   margin: 20px auto;
-  background: #fc7fb2; }
+  background: #7e0cf5; }
 
 /*  Events display */
 .events-container {
   overflow-y: scroll;
   height: 100%;
-  width: 100%;
-  float: left;
+  width: 50%;
+  float: right;
   margin: 0px auto;
   display: inline-block;
   padding: 0px;
@@ -8213,13 +8213,17 @@ h1, h2, h3, h4, h5,
   padding: 20px 0;
   max-width: 100%;
   display: block;
-  background: #fc7fb2;
+  background: #fff;
   border: none !important;
   margin: 20px;
-  color: #fff;
-  margin-left: 12px;
-  border-radius: 4px;
-  margin: 0; }
+  margin-left: 12px; }
+  @media (max-width: 991.98px) {
+    .event-card {
+      margin: 10px; } }
+  @media (max-width: 767.98px) {
+    .event-card {
+      margin: 0;
+      background: #e6e6e6; } }
 
 .event-count, .event-name, .event-cancelled {
   display: inline;
@@ -8227,7 +8231,7 @@ h1, h2, h3, h4, h5,
   font-size: 1rem; }
 
 .event-count {
-  color: #fc7fb2;
+  color: #7e0cf5;
   text-align: right; }
 
 .event-name {
@@ -8235,7 +8239,7 @@ h1, h2, h3, h4, h5,
   text-align: left; }
 
 .event-cancelled {
-  color: #fc7fb2;
+  color: #cd4dcc;
   text-align: right; }
 
 /*  Calendar wrapper */
@@ -8243,12 +8247,12 @@ h1, h2, h3, h4, h5,
   position: relative;
   margin: 0 auto;
   height: 100%;
-  width: 100%;
+  width: 50%;
   background: #fff;
   font: 13px Helvetica, Arial, san-serif;
   display: inline-block;
   padding: 20px;
-  float: right; }
+  float: left; }
   @media (max-width: 991.98px) {
     .calendar-container {
       padding: 0; } }
@@ -8296,7 +8300,7 @@ h1, h2, h3, h4, h5,
       -o-transition: none;
       transition: none; } }
   .left-button:hover, .right-button:hover {
-    color: #fc7fb2 !important; }
+    color: #7e0cf5 !important; }
 
 .left-button {
   left: 0; }
@@ -8320,7 +8324,7 @@ h1, h2, h3, h4, h5,
   transition: .2s ease all;
   color: white;
   border: none;
-  background: #fc7fb2; }
+  background: #7e0cf5; }
   .button.button-white {
     background: #fff;
     color: #000; }
@@ -8330,7 +8334,7 @@ h1, h2, h3, h4, h5,
     outline: none; }
 
 #cancel-button {
-  background: #000; }
+  background: #cd4dcc; }
 
 #add-button {
   display: block;
@@ -8385,10 +8389,10 @@ h1, h2, h3, h4, h5,
 
 .active-month {
   font-weight: 700;
-  color: #fc7fb2; }
+  color: #000; }
 
 .month:hover {
-  color: #fc7fb2; }
+  color: #cd4dcc; }
 
 /*  Dates table */
 .table-date {
@@ -8401,31 +8405,18 @@ h1, h2, h3, h4, h5,
   line-height: 26px;
   text-align: center;
   border-radius: 50%;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   -webkit-transition: all 250ms;
   -o-transition: all 250ms;
   transition: all 250ms;
-  position: relative;
-  z-index: 0; }
-  .table-date:before {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    content: '';
-    margin: 0 auto;
-    border-radius: 50%;
-    z-index: -1; }
+  position: relative; }
+
+.table-date:not(.nil):hover {
+  border-color: #cd4dcc; }
 
 .event-date {
-  border-color: #fc7fb2;
-  background: #fc7fb2;
+  border-color: #7e0cf5;
+  background: #7e0cf5;
   color: #fff; }
   .event-date:after {
     position: absolute;
@@ -8435,27 +8426,24 @@ h1, h2, h3, h4, h5,
     height: 10px;
     border-radius: 50%;
     content: '';
-    background: #ffc107;
-    border: 1px solid white; }
+    background: #28a745; }
 
 .active-date {
+  background: #cd4dcc;
   color: #fff; }
-  .active-date:before {
-    background: #fc7fb2; }
 
 .event-date.active-date {
-  background: transparent;
-  border: none; }
+  background: #7e0cf5; }
 
 /* input dialog */
 .dialog {
   z-index: 5;
-  background: #fc7fb2;
+  background: #000;
   position: absolute;
-  width: 100%;
-  height: 100%;
-  bottom: 0;
-  left: 0;
+  width: 50%;
+  height: 500px;
+  top: 0;
+  right: 0;
   display: none; }
   @media (max-width: 767.98px) {
     .dialog {
@@ -8463,13 +8451,12 @@ h1, h2, h3, h4, h5,
 
 .dialog-header {
   margin: 20px;
-  margin-top: 30px;
   color: #fff;
   text-align: center;
   font-size: 28px; }
 
 .form-container {
-  margin-top: 20%; }
+  margin-top: 25%; }
 
 .form-label {
   text-transform: uppercase;
@@ -8480,16 +8467,15 @@ h1, h2, h3, h4, h5,
 .input {
   border: none;
   background: none;
-  border: 1px rgba(255, 255, 255, 0.2) solid;
+  border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   width: 300px;
-  height: 40px;
+  height: 20px;
   text-align: center;
   -webkit-transition: border-color 250ms;
   -o-transition: border-color 250ms;
   transition: border-color 250ms;
-  border-radius: 40px;
   color: #fff; }
 
 .input:focus {
@@ -8497,4 +8483,4 @@ h1, h2, h3, h4, h5,
   border-color: #fff; }
 
 .error-input {
-  border-color: #fc7fb2; }
+  border-color: #cd4dcc; }

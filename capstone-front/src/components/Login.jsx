@@ -4,7 +4,7 @@ import axios from 'axios'
 import Context from "../Context"
 
 export default function Login () {
-  const BASE_URL = 'http://localhost:3001/api/'
+  const BASE_URL = `http://localhost:3001/api/`
 
   const initialState = {
     username: '',
@@ -30,7 +30,7 @@ export default function Login () {
       if (myUser.data[0].password === formState.password) {
           setUserInfo({...userInfo, firstName: myUser.data[0].firstName, lastName: myUser.data[0].lastName, userId: myUser.data[0]._id, username: myUser.data[0].username})
           setIsActive(false)
-          navigate("/login")
+          navigate("/MyCalendar")
       } else {
           setIsActive(true)
       }
@@ -43,9 +43,9 @@ export default function Login () {
     setFormState({...formState, [e.target.id]: e.target.value})
   }
 
-  const logIn = async () => {
-    await axios.get(`http://localhost:3001/api/`)
-  }
+  // const login = async () => {
+  //   await axios.get(`http://localhost:3001/api/`)
+  // }
 
   const create = () => {
     navigate('/createAccount')

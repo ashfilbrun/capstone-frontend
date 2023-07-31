@@ -4,6 +4,7 @@ import Login from './Login'
 import CreateAccount from './CreateAccount'
 import MyCalendar from './MyCalendar'
 import Profile from './Profile'
+import DailySurvey from './DailySurvey'
 // import Day from './Day'
 import Context from '../Context'
 
@@ -26,7 +27,7 @@ export default function Main () {
     return (
       <>
         <Routes>
-          <Route path='/' element={<MyCalendar />}/>
+          <Route path='/MyCalendar' element={<MyCalendar />}/>
           <Route path='/Profile/:id' element={<Profile />}/>
           <Route path='/DailySurvey/:id' element={<DailySurvey />}/>
         </Routes>

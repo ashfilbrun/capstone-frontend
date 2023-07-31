@@ -3,7 +3,7 @@
 @import 'bootstrap/mixins';
 
 $font-primary: 'Lato',Arial, sans-serif;
-$primary: #fc7fb2;
+$primary: #7e0cf5;
 
 body{
 	font-family: $font-primary;
@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5,
 .content {
   overflow: none;
   width: 100%;
-  max-width: 500px;
+  max-width: 790px;
   padding: 0px 0;
   height: 500px;
   position: relative;
@@ -72,8 +72,8 @@ h1, h2, h3, h4, h5,
 .events-container {
   overflow-y: scroll;
   height: 100%;
-  width: 100%;
-  float: left;
+  width: 50%;
+  float: right;
   margin: 0px auto; 
   display: inline-block; 
   padding: 0px;
@@ -92,13 +92,19 @@ h1, h2, h3, h4, h5,
   padding: 20px 0;
   max-width: 100%;
   display: block;
-  background: $primary;
+  background: #fff;
   border: none !important;
   margin: 20px;
-  color: $white;
   margin-left: 12px;
-  border-radius: 4px;
-  margin: 0;
+  // border-radius: 3px;
+  @include media-breakpoint-down(md){
+  	margin: 10px;
+  }
+  @include media-breakpoint-down(sm){
+  	margin: 0;
+  	background: lighten($black,90%);
+  	// color: $white;
+  }
 }
 .event-count, .event-name, .event-cancelled {
     display: inline;
@@ -114,7 +120,7 @@ h1, h2, h3, h4, h5,
     text-align: left;
 }
 .event-cancelled {
-    color: $primary;
+    color: #cd4dcc;
     text-align: right;
 }
 
@@ -123,12 +129,12 @@ h1, h2, h3, h4, h5,
   position: relative;
   margin: 0 auto; 
   height: 100%;
-  width: 100%;
+  width: 50%;
   background: #fff;
   font: 13px Helvetica, Arial, san-serif; 
   display: inline-block; 
   padding: 20px;
-  float: right;
+  float: left;
   @include media-breakpoint-down(md){
   	padding: 0;
   }
@@ -206,7 +212,7 @@ h1, h2, h3, h4, h5,
   }
 }
 #cancel-button {
-    background: $black;
+    background: #cd4dcc;
 }
 #add-button {
   display: block;
@@ -257,10 +263,10 @@ h1, h2, h3, h4, h5,
 .active-month {
   font-weight: 700;
   // font-size: 14px;
-  color: $primary;
+  color: #000;
 }
 .month:hover {
-    color: $primary;
+    color: #cd4dcc;
 }
 
 /*  Dates table */
@@ -274,27 +280,12 @@ h1, h2, h3, h4, h5,
   line-height:26px; 
   text-align:center; 
   border-radius: 50%;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   transition: all 250ms;
   position: relative;
-  z-index: 0;
-  &:before{
-  	position: absolute;
-  	top: 50%;
-  	left: 0;
-  	right: 0;
-  	bottom: 0;
-  	transform: translateY(-50%);
-  	width: 40px;
-  	height: 40px;
-  	content: '';
-  	margin: 0 auto;
-  	border-radius: 50%;
-  	z-index: -1;
-  }
 }
 .table-date:not(.nil):hover { 
-    // border-color: $primary;
+    border-color: #cd4dcc;
 }
 .event-date {
   border-color:$primary;
@@ -308,31 +299,26 @@ h1, h2, h3, h4, h5,
 		height: 10px;
 		border-radius: 50%;
 		content: '';
-		background: $warning;
-		border: 1px solid white;
+		background: $success;
 	}
 }
 .active-date{ 
-  // background: $primary;
-  color: #fff;
-  &:before{
-  	background: $primary;
-  }
+    background: #cd4dcc;
+    color: #fff;
 }
 .event-date.active-date {
-    background: transparent;
-    border: none;
+    background: $primary;
 }
 
 /* input dialog */
 .dialog{
   z-index: 5;
-  background: $primary;
+  background: $black;
   position:absolute;
-  width:100%;
-  height: 100%;
-  bottom: 0;
-  left:0;
+  width:50%;
+  height: 500px;
+  top: 0;
+  right:0;
   display:none;
   @include media-breakpoint-down(sm){
   	width: 100%;
@@ -340,13 +326,12 @@ h1, h2, h3, h4, h5,
 }
 .dialog-header {
   margin: 20px;
-  margin-top: 30px;
   color:#fff;
   text-align: center;
   font-size: 28px;
 }
 .form-container {
-  margin-top:20%;
+  margin-top:25%;
 }
 .form-label {
 	text-transform: uppercase;
@@ -357,14 +342,13 @@ h1, h2, h3, h4, h5,
 .input {
   border:none;
   background: none;
-  border: 1px rgba(255,255,255,.2) solid;
+  border-bottom: 1px rgba(255,255,255,.2) solid;
   display:block;
-  margin-bottom:30px;
+  margin-bottom:50px;
   width: 300px;
-  height: 40px;
+  height: 20px;
   text-align: center;
   transition: border-color 250ms;
-  border-radius: 40px;
   color: $white;
 }
 .input:focus {
@@ -372,5 +356,5 @@ h1, h2, h3, h4, h5,
   border-color: #fff;
 }
 .error-input {
-    border-color: $primary;
+    border-color: #cd4dcc;
 }

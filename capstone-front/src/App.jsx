@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import './App.css'
-// import Header from './components/Header'
+import Header from './components/Header'
 import Main from './components/Main'
-// import Footer from './components/Footer'
+import Footer from './components/Footer'
 import Context from './Context'
 
 
 
 function App() {
-  console.log('hi')
   const [userInfo, setUserInfo] = useState({
     firstName: '',
     lastName: '',
@@ -24,9 +23,9 @@ function App() {
   return (
     <div>
       <Context.Provider value={{ userInfo, setUserInfo }}>
-        {/* <Header /> */}
+        <Header />
         <Main />
-        {/* <Footer /> */}
+        <Footer />
       </Context.Provider>
     </div>
   )

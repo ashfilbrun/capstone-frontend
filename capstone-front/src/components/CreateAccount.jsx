@@ -1,26 +1,26 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 
 export default function CreateAccount () {
-
+  
   const BASE_URL = "http://localhost:3001/api/"
-
+  
+  
   const initialState = {
-      firstName: '',
-      lastName: '',
-      username: '',
-      email: '',
-      password: '',
-      sex: '',
-      passwordValid: ''
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    password: '',
+    sex: '',
+    passwordValid: ''
   }
-
+  
   const [formState, setFormState] = useState(initialState)
-
-
-
-
+  const [ illness, setIllness ] = useState('')
+  const [ illnesses, setIllnesses ] = useState('')
+  
   let navigate = useNavigate()
 
   const handleSubmit = async (e) => {
@@ -33,18 +33,33 @@ export default function CreateAccount () {
       password: formState.password,
       sex: formState.sex,
       birthDate: null,
-      illnessId: null,
+      illnessId: formState.illness,
       googleId: null,
     }
-
     await axios.post(`${BASE_URL}user/create`, newUser)
-
     setFormState(initialState)
     navigate("/")
   }
 
+  useEffect(() => {
+    const getIllnesses = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/api/illness/`)
+        setIllnesses(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getIllnesses()
+    console.log(illnesses)
+  }, [])
+
   const handleChange = e => {
     setFormState({...formState, [e.target.id]: e.target.value })
+  }
+
+  const handleChangeIllness = event => {
+    setIllness(event.target.value)
   }
 
   const cancel = () => {
@@ -85,9 +100,12 @@ export default function CreateAccount () {
             <option value='no'>Prefer not to answer</option>
           </select>
           <label htmlFor="illnessId">CHRONIC ILLNESS:</label>
-          <select name="illnessId" id='illnessId'>
-            {/* MAP ILLNESSES */}
-            <option value=''></option>
+          <select placeholder='select' name="illnessId" id='illnessId' onChange={handleChangeIllness}>
+            {illnesses.map(illness => (
+              <option key={illness.id} defaultValue={illness.id}>
+                {illness.name}
+              </option>
+            ))}
           </select>
           <label htmlFor="username">CREATE USERNAME: </label>
           <input 

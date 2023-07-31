@@ -10,7 +10,7 @@ export default function myCalendar () {
     <div className='myCalendar'>
       <h1 className='header'>React Calendar</h1>
       <div className='container' id='calendar'>
-        <Calendar onChange={setDate} value={date}/>
+        <Calendar onChange={setDate} defaultValue={date}/>
       </div>
       <div className='text-center'>
         Selected date: {date.toDateString()}
