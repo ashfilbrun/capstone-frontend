@@ -1,36 +1,50 @@
-import React, { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import Calendar from "react-calendar";
+import axios from "axios";
 import "../App.css";
 import DailySurvey from "./DailySurvey";
-
-function tileContent({ date, view }) {
-  const [selectedDate, setSelectedDate] = useState("");
-
-  if (view === "month") {
-    if (selectedDate.find((dDate) => isSameDay(dDate, date))) {
-      return "My content";
-    }
-  }
-}
+import Context from "../Context";
+import { BASE_URL } from "../constants/constants";
+import moment from "moment";
 
 export default function MyCalendar() {
+  const [surveysByUser, setSurveysByUser] = useState("");
+  const { userInfo, setUserInfo } = useContext(Context);
   const [date, setDate] = useState(new Date());
 
-  const handleChange = (event) => {
-    setDate(event.target.value);
+  const getSurveysByUser = async (date) => {
+    console.log(
+      "🚀 ~ file: MyCalendar.jsx:25 ~ getSurveysByUser ~ date:",
+      date
+    );
+    const parsedDate = moment(date, "ddd MMMM D YYYY");
+    const formattedDate = parsedDate.format("YYYY-MM-DD");
+    console.log(
+      "🚀 ~ file: MyCalendar.jsx:22 ~ getSurveysByUser ~ formattedDate:",
+      formattedDate
+    );
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/survey/userSurvey/${userInfo.userId}`,
+        { params: { date: formattedDate } }
+      );
+      setSurveysByUser(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div>
       <Calendar
-        onChange={handleChange}
-        value={date}
-        // tileContent={tileContent}
         maxDate={new Date()}
-        // onClickDay={<DailySurvey />}
+        onClickDay={(day, event) => {
+          getSurveysByUser(day);
+        }}
       />
-      <DailySurvey />
+      {surveysByUser && surveysByUser.length && (
+        <DailySurvey surveys={surveysByUser} />
+      )}
     </div>
   );
 }
-// //USE ONCLICK DAY

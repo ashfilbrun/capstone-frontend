@@ -6,7 +6,8 @@ import Context from "../Context";
 import Select from "react-select";
 import { BASE_URL } from "../constants/constants";
 
-export default function DailySurvey({ open, onClose, meTeamId }) {
+export default function DailySurvey(props) {
+  const { surveys } = props;
   const [date, setDate] = useState(new Date());
   const [survey, setSurvey] = useState("");
   const [surveysByUser, setSurveysByUser] = useState("");
@@ -56,22 +57,22 @@ export default function DailySurvey({ open, onClose, meTeamId }) {
   //   }
   // };
 
-  const getSurveysByUser = async () => {
-    try {
-      const response = await axios.get(
-        `${BASE_URL}/survey/userSurvey/${userInfo.userId}`
-      );
-      setSurvey(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getSurveysByUser = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `${BASE_URL}/survey/userSurvey/${userInfo.userId}`
+  //     );
+  //     setSurvey(response.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    getSurveysByUser();
-  }, []);
+  // useEffect(() => {
+  //   getSurveysByUser();
+  // }, []);
 
-  console.log(survey);
+  // console.log(survey);
 
   // const handleChangeSurvey = (e) => {
   //   setSurveyFormState = ({...survey, [e.target.id]: e.target.value })
@@ -80,11 +81,16 @@ export default function DailySurvey({ open, onClose, meTeamId }) {
   return (
     <div className="container" id="survey">
       <div>
-        {survey &&
-          survey.length &&
-          survey.map((survey) => {
-            return <h1>Daily Surveys: {survey._id}</h1>;
+        {surveys &&
+          surveys.length &&
+          surveys.map((survey) => {
+            return <h1 key={survey._id}>Daily Surveys: {survey._id}</h1>;
           })}
+        <form>
+          {/* map through to find users illness symptoms */}
+          {/* pull symptom */}
+          {/* add score bar */}
+        </form>
       </div>
     </div>
   );
