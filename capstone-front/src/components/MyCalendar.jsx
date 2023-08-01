@@ -15,7 +15,7 @@ function tileContent({ date, view }) {
   }
 }
 
- function myCalendar () {
+export default function myCalendar () {
 
   const [value, setValue] = useState(new Date ());
 
@@ -24,13 +24,13 @@ function tileContent({ date, view }) {
   // }
 
   return (
-    // <Calendar
-    //   // onChange={handleChange}
-    //   value={date}
-    //   tileContent={tileContent}
-    //   maxDate={new Date()}
-    //   // onClickDay={<DailySurvey />}
-    // />
+    <Calendar
+      // onChange={handleChange}
+      // value={date}
+      // tileContent={tileContent}
+      // maxDate={new Date()}
+      // onClickDay={<DailySurvey />}
+    />
   )
 }
-//USE ONCLICK DAY
+// //USE ONCLICK DAY

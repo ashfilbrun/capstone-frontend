@@ -12,7 +12,7 @@ export default function Nav () {
   return (
     <div className="navBar">
       <ul>
-        <li><Link to={`/Calendar/`}>Calendar</Link></li>
+        <li><Link to={`/MyCalendar/`}>Calendar</Link></li>
         <li><Link to={`/DailySurvey/${userId}`}>Daily Survey</Link></li>
         <li><Link to={`/Profile/${userId}`}>Profile</Link></li>
       </ul>

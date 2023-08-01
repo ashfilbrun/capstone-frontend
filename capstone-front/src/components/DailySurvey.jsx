@@ -14,7 +14,7 @@ export default function DailySurvey ({open, onClose, meTeamId}) {
   const { user, setUser } = useContext(Context)
   const [score, setScore] = useState('')
   const [symptoms, setSymptoms] = useState([{}])
-  const [value, setValue] = useState(new Date ());
+  // const [value, setValue] = useState(new Date ());
 
   let navigate = useNavigate()
 
@@ -43,30 +43,30 @@ export default function DailySurvey ({open, onClose, meTeamId}) {
     getSymptoms()
   }, [])
 
-  const getSurvey = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3001/api/survey/`)
-      setSurvey(response.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // const getSurvey = async () => {
+  //   try {
+  //     const response = await axios.get(`http://localhost:3001/api/survey/`)
+  //     setSurvey(response.data)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
-  useEffect(() => {
-    getSurvey()
-  }, [])
+  // useEffect(() => {
+  //   getSurvey()
+  // }, [])
 
-  const handleChangeSurvey = (e) => {
-    setSurveyFormState = ({...survey, [e.target.id]: e.target.value })
-  }
+  // const handleChangeSurvey = (e) => {
+  //   setSurveyFormState = ({...survey, [e.target.id]: e.target.value })
+  // }
   console.log(userInfo.userId)
 
   return (
     <div className="container" id='survey' onSubmit={handleSubmit}>
       <div>
-        <Calendar 
+        {/* <Calendar 
           onChange={handleChangeSurvey}
-        />
+        /> */}
       </div>
     </div>
   )
