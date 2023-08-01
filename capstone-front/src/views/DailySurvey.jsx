@@ -1,23 +1,22 @@
-import { useState, useContext, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import Calendar from "react-calendar";
 import axios from "axios";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Context from "../Context";
-import Select from "react-select";
 import { BASE_URL } from "../constants/constants";
 
 export default function DailySurvey(props) {
-  const { surveys } = props;
-  const [date, setDate] = useState(new Date());
-  const [survey, setSurvey] = useState("");
-  const [surveysByUser, setSurveysByUser] = useState("");
-  const { userInfo, setUserInfo } = useContext(Context);
+  const { surveys, illness, symptoms } = props;
   console.log(
-    "🚀 ~ file: DailySurvey.jsx:15 ~ DailySurvey ~ userInfo:",
-    userInfo
+    "🚀 ~ file: DailySurvey.jsx:11 ~ DailySurvey ~ symptoms:",
+    symptoms
   );
-  const [score, setScore] = useState("");
-  const [symptoms, setSymptoms] = useState([{}]);
+  console.log(
+    "🚀 ~ file: DailySurvey.jsx:11 ~ DailySurvey ~ illness:",
+    illness
+  );
+  const { userInfo } = useContext(Context);
+
+  // const [score, setScore] = useState("");
 
   let navigate = useNavigate();
 
@@ -57,20 +56,17 @@ export default function DailySurvey(props) {
   //   }
   // };
 
-  // const getSurveysByUser = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `${BASE_URL}/survey/userSurvey/${userInfo.userId}`
-  //     );
-  //     setSurvey(response.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getSurveysByUser();
-  // }, []);
+  const getIllnessForUser = async () => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/user/${userInfo.illnessId}`
+      );
+      setIllness(response.data);
+      setSymptoms(response.data.symptoms);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // console.log(survey);
 
@@ -81,11 +77,14 @@ export default function DailySurvey(props) {
   return (
     <div className="container" id="survey">
       <div>
-        {surveys &&
-          surveys.length &&
+        {surveys && surveys.length ? (
           surveys.map((survey) => {
             return <h1 key={survey._id}>Daily Surveys: {survey._id}</h1>;
-          })}
+          })
+        ) : (
+          <h1>Survey Not Found</h1>
+        )}
+        
         <form>
           {/* map through to find users illness symptoms */}
           {/* pull symptom */}

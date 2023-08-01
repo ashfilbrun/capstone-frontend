@@ -32,6 +32,7 @@ export default function Login() {
       if (myUser.data[0].password === formState.password) {
         setUserInfo({
           ...userInfo,
+          illnessId: myUser.data[0].illnessId,
           firstName: myUser.data[0].firstName,
           lastName: myUser.data[0].lastName,
           userId: myUser.data[0]._id,

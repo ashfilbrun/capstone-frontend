@@ -1,28 +1,23 @@
-import { useState, useContext, useEffect } from "react";
-import Calendar from "react-calendar";
 import axios from "axios";
+import moment from "moment";
+import { useCallback, useContext, useEffect, useState } from "react";
+import Calendar from "react-calendar";
 import "../App.css";
-import DailySurvey from "./DailySurvey";
 import Context from "../Context";
 import { BASE_URL } from "../constants/constants";
-import moment from "moment";
+import DailySurvey from "./DailySurvey";
 
 export default function MyCalendar() {
   const [surveysByUser, setSurveysByUser] = useState("");
-  const { userInfo, setUserInfo } = useContext(Context);
-  const [date, setDate] = useState(new Date());
+  const [symptoms, setSymptoms] = useState([{}]);
+  const [illness, setIllness] = useState({});
+  const { userInfo } = useContext(Context);
 
   const getSurveysByUser = async (date) => {
-    console.log(
-      "🚀 ~ file: MyCalendar.jsx:25 ~ getSurveysByUser ~ date:",
-      date
-    );
+    getIllnesByUser();
     const parsedDate = moment(date, "ddd MMMM D YYYY");
     const formattedDate = parsedDate.format("YYYY-MM-DD");
-    console.log(
-      "🚀 ~ file: MyCalendar.jsx:22 ~ getSurveysByUser ~ formattedDate:",
-      formattedDate
-    );
+
     try {
       const response = await axios.get(
         `${BASE_URL}/survey/userSurvey/${userInfo.userId}`,
@@ -34,17 +29,44 @@ export default function MyCalendar() {
     }
   };
 
+  const getIllness = useCallback(async () => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/user/${userInfo.illnessId}`
+      );
+      setIllness(response.data);
+      setSymptoms(response.data.symptoms);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [userInfo.illnessId]);
+
+  const getIllnesByUser = async () => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/illness/${userInfo.illnessId}`
+      );
+      setIllness(response.data);
+      setSymptoms(response.data.symptoms);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <Calendar
         maxDate={new Date()}
-        onClickDay={(day, event) => {
+        onClickDay={(day) => {
           getSurveysByUser(day);
         }}
       />
-      {surveysByUser && surveysByUser.length && (
-        <DailySurvey surveys={surveysByUser} />
-      )}
+
+      <DailySurvey
+        surveys={surveysByUser}
+        illness={illness}
+        symptoms={symptoms}
+      />
     </div>
   );
 }
