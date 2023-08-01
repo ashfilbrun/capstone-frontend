@@ -71,14 +71,14 @@ export default function Login () {
                   onChange={handleChange} 
                   value={formState.password} />
                 <p className="invalid" style={{display: isActive? "": "none"}}>Username or password is incorrect. Please try again!</p>
-                <button type="submit" className="submit">LOG IN</button>
-                <button type="reset" className="submit" id="resetBtn">forgot password ?</button>
+                <button type="submit" className="submit">Log In</button>
+                {/* <button type="reset" className="submit" id="resetBtn">forgot password ?</button> */}
             </form>       
         </div>
         <div className="lineBreak"></div>
         <div>
             {/* <button onClick={() => logIn()}>Login W/ Google</button> */}
-        <button className="createBtn" onClick={create}>New Here? &nbsp;Create An Account</button>
+        <button className="createBtn" onClick={create}>&nbsp;Create An Account</button>
       </div>
   </div>
   )

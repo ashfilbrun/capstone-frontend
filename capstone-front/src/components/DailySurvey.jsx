@@ -47,7 +47,7 @@ export default function DailySurvey ({open, onClose, meTeamId}) {
       <div>
         <h3>Daily Survey</h3>
         <form className="dailySurvey">
-          <></>
+          pages: 
         </form> 
 
       </div>

@@ -16,13 +16,13 @@ export default function Profile () {
   const [ illness, setIllness ] = useState('')
   const [ illnesses, setIllnesses ] = useState('')
 
-
   
-  const saveUserData = async () => {
+  const saveUserInfo = async () => {
+    console.log(userInfo)
     try {
       const response = await axios.put(
-        `http://localhost:3001/api/user/${userInfo.userId}/`,
-        userData
+        `http://localhost:3001/api/user/${userInfo._id}/`,
+        userInfo
         )
         console.log('Profile updated successfully:', response.data)
       } catch (error) {
@@ -32,10 +32,8 @@ export default function Profile () {
     
     const handleSubmit = (e) => {
       e.preventDefault()
-      console.log(userData)
-      saveUserData(userData)
       alert('Profile updated successfully!')
-      const userData = {
+      const userInfo = {
         firstName,
         lastName,
         username,
@@ -44,6 +42,8 @@ export default function Profile () {
         passwordValid,
         illness,
       }
+      saveUserInfo(userInfo)
+      console.log(userInfo)
     }
 
   useEffect(() => {

@@ -21,7 +21,7 @@ export default function CreateAccount () {
   
   const [formState, setFormState] = useState(initialState)
   const [ illness, setIllness ] = useState('')
-  const { illnesses, setIllnesses } = useContext(Context)
+  const [ illnesses, setIllnesses ] = useState('')
   
   let navigate = useNavigate()
 
@@ -46,7 +46,7 @@ export default function CreateAccount () {
     const getIllnesses = async () => {
       try {
         const response = await axios.get(`http://localhost:3001/api/illness/`)
-        getIllnesses(response.data)
+        setIllnesses(response.data)
       } catch (error) {
         console.log(error)
       }
@@ -59,9 +59,8 @@ export default function CreateAccount () {
     setFormState({...formState, [e.target.id]: e.target.value })
   }
 
-  const handleChangeIllness = event => {
+  const handleChangeIllness = (e) => {
     setIllness({...illness, [e.target.id]: e.target.value})
-    setIllnesses({...illnesses, [e.target.id]: e.target.value})
   }
 
   const cancel = () => {
@@ -69,7 +68,7 @@ export default function CreateAccount () {
     navigate("/")
   }
 
-  return ( 
+  return illnesses?( 
     <div className="container" id='createAccountContainer'>
       <div className="form" id="createAccountForm" onSubmit={handleSubmit}>
         <form>
@@ -95,7 +94,7 @@ export default function CreateAccount () {
             onChange={handleChange} 
             value={formState.birthDate}></input>
           <label htmlFor="sex">SEX: </label>
-          <select name="sex" id="sex">
+          <select name="sex" id="sex" onChange={handleChange}>
             <option value='select an answer'></option>
             <option value='female'>Female</option>
             <option value='male'>Male</option>
@@ -107,9 +106,10 @@ export default function CreateAccount () {
             name="illness" 
             onChange={handleChangeIllness}>
             {illnesses?.map(illness => (
-              <option key={illness.id} defaultValue={illness.id}>
+              <option key={illness.id} value={illness.id} placeholder="select">
                 {illness.name}
               </option>
+              // <option value="other">other</option>
             ))}
           </select>
           <label htmlFor="username">CREATE USERNAME: </label>
@@ -145,5 +145,5 @@ export default function CreateAccount () {
         </form>       
       </div>
     </div>
-  )
+  ): null
 }
