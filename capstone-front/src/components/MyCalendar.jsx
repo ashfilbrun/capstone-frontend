@@ -18,3 +18,5 @@ export default function myCalendar () {
     </div>
   )
 }
+
+//USE ONCLICK DAY

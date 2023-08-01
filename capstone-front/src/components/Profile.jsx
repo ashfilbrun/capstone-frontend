@@ -74,8 +74,6 @@ export default function Profile () {
 
 
   const handleChangeIllness = event => {
-    // console.log('Name', event.target.selectedOptions[0].illnessId);
-    // console.log(event.target.value);
     setIllness(event.target.value);
   };
       
