@@ -5,7 +5,6 @@ import CreateAccount from './CreateAccount'
 import MyCalendar from './MyCalendar'
 import Profile from './Profile'
 import DailySurvey from './DailySurvey'
-// import Day from './Day'
 import Context from '../Context'
 
 export default function Main () {

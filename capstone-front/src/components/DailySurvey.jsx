@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import Calendar from 'react-calendar'
 import axios from 'axios'
 import Context from '../Context'
 import Select from 'react-select'
@@ -8,10 +9,12 @@ export default function DailySurvey ({open, onClose, meTeamId}) {
   const BASE_URL = 'http://localhost:3001/api/'
 
   const [date, setDate] = useState('')
+  const [ survey, setSurvey ] = useState('')
   const [formState, setFormState] = useState(initialState)
   const { user, setUser } = useContext(Context)
   const [score, setScore] = useState('')
   const [symptoms, setSymptoms] = useState([{}])
+  const [value, setValue] = useState(new Date ());
 
   let navigate = useNavigate()
 
@@ -40,16 +43,30 @@ export default function DailySurvey ({open, onClose, meTeamId}) {
     getSymptoms()
   }, [])
 
+  const getSurvey = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/api/survey/`)
+      setSurvey(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getSurvey()
+  }, [])
+
+  const handleChangeSurvey = (e) => {
+    setSurveyFormState = ({...survey, [e.target.id]: e.target.value })
+  }
   console.log(userInfo.userId)
 
   return (
     <div className="container" id='survey' onSubmit={handleSubmit}>
       <div>
-        <h3>Daily Survey</h3>
-        <form className="dailySurvey">
-          pages: 
-        </form> 
-
+        <Calendar 
+          onChange={handleChangeSurvey}
+        />
       </div>
     </div>
   )

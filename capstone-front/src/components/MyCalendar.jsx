@@ -1,22 +1,36 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Calendar from 'react-calendar';
+// import { useContext, useState } from 'react';
 import '../App.css'
 
-export default function myCalendar () {
 
-  const [date, setDate] = useState(new Date ())
+function tileContent({ date, view }) {
 
-  return (
-    <div className='myCalendar'>
-      <h1 className='header'>React Calendar</h1>
-      <div className='container' id='calendar'>
-        <Calendar onChange={setDate} defaultValue={date}/>
-      </div>
-      <div className='text-center'>
-        Selected date: {date.toDateString()}
-      </div>
-    </div>
-  )
+  const [selectedDate, setSelectedDate] = useState('')
+
+  if (view === 'month') {
+    if (selectedDate.find(dDate => isSameDay(dDate, date))) {
+      return 'My content';
+    }
+  }
 }
 
+ function myCalendar () {
+
+  const [value, setValue] = useState(new Date ());
+
+  // const handleChange = e => {
+  //   setValue = ({...value, [e.target.id]: e.target.value})
+  // }
+
+  return (
+    // <Calendar
+    //   // onChange={handleChange}
+    //   value={date}
+    //   tileContent={tileContent}
+    //   maxDate={new Date()}
+    //   // onClickDay={<DailySurvey />}
+    // />
+  )
+}
 //USE ONCLICK DAY

@@ -34,7 +34,7 @@ export default function CreateAccount () {
       username: formState.username,
       password: formState.password,
       sex: formState.sex,
-      birthDate: null,
+      birthDate: formState.birthDate,
       illnessId: null,
       googleId: null,
     }
